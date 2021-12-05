@@ -1,0 +1,7 @@
+<?php
+function timd_disable_rest_api( $access ) {
+return new WP_Error( 'rest_disabled', __( 'The WordPress REST API has been disabled.' ), array( 'status' => rest_authorization_required_code() ) );
+}
+add_filter( 'rest_authentication_errors', 'timd_disable_rest_api' );
+add_filter('json_enabled', '__return_false');
+add_filter('json_jsonnp_enabled','__return_false');
